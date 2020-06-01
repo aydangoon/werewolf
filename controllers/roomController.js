@@ -18,8 +18,8 @@ exports.get_room_access = (req, res) => {
         let room = getRoom(req.query.room)
         let name = req.query.name
 
-        if (name.length == 0) {
-            res.render('index', {errors: [{msg: 'name field empty'}]})
+        if (name.length == 0 || req.query.room.length == 0) {
+            res.render('index', {errors: [{msg: 'field empty'}]})
             return
         }
 

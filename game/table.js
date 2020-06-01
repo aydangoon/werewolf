@@ -51,9 +51,13 @@ function Table(players, cards, settings) {
 
         let fromPlayer = this.playerByName(from)
         let toPlayer = this.playerByName(to)
-        let vote = fromPlayer.card.trueName === 'bodyguard' ? -9999 : 1
+        let isBg = fromPlayer.card.trueName === 'bodyguard'
+        if (isBg) {
+            toPlayer.protected = true
+        } else {
+            toPlayer.votes++
+        }
         fromPlayer.votedFor = toPlayer.name
-        toPlayer.votes += vote
 
     }
 
@@ -73,39 +77,33 @@ function Table(players, cards, settings) {
         let villagerDied = false
         let werewolfDied = false
         let tannerDied = false
-        let deathFunction = (p) => {
+        let deathFunction = (p, call=1) => {
+            let canDie = !p.protected
             switch(p.card.trueName) {
                 case 'tanner':
-                    tannerDied = true
+                    tannerDied = canDie
                     break
                 case 'werewolf':
-                    werewolfDied = true
+                    werewolfDied = canDie
                     break
                 case 'minion':
                     if (this.players.filter(p2 => p2.card.trueName === 'werewolf').length == 0 && settings.rogueMinion) {
-                        werewolfDied = true
+                        werewolfDied = canDie
                     } else {
-                        villagerDied = true
+                        villagerDied = canDie
                     }
                     break
                 case 'prince':
                     break
                 case 'hunter': // big ew. I hate casing. find better way
-                    if (p.hasOwnProperty('votedFor')) {
+                    villagerDied = canDie
+                    if (call < 3 && p.hasOwnProperty('votedFor')) {
                         let tgt = this.playerByName(p.votedFor)
-                        if (tgt.card.trueName !== 'hunter') {
-                            deathFunction(tgt)
-                        } else {
-                            if (tgt.hasOwnProperty('votedFor') && tgt.votedFor === p.name) {
-                                villagerDied = true
-                            } else if (tgt.hasOwnProperty('votedFor')) {
-                                deathFunction(this.playerByName(tgt.votedFor))
-                            }
-                        }
+                        deathFunction(tgt, call+1)
                     }
                     break
                 default:
-                    villagerDied = true
+                    villagerDied = canDie
                     break
             }
         }
@@ -141,6 +139,7 @@ function assignBehaviorAndOriginalCards(players, roles, middle) {
         players[i].behavior = cardName
         players[i].card = {name: cardName, trueName: cardName}
         players[i].votes = 0
+        players[i].protected = false
     }
 
     for (let i = 0; i < temp.length; i++) {

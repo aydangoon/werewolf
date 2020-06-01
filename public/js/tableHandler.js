@@ -9,7 +9,7 @@
     * behavior functions
     * @todo in some callbacks, 'data' should really be replaced with a parameters list. this will
     * make it easier to understand what values the callback actually takes
-    * @todo this file feels unnecessarily long. try to split it up? 
+    * @todo this file feels unnecessarily long. try to split it up?
 */
 
 // table HTML elements
@@ -106,7 +106,7 @@ function handleRole(round, data) {
             canAct = local.role === round.name
             break
         default:
-            canAct = local.role.includes(round.name)
+            canAct = (local.role === round.name || local.role === 'dopple'+round.name)
             break
     }
     if (canAct) {
@@ -221,7 +221,7 @@ function doDoppleganger(data) {
             elt.innerText = player.name + '\n card: ' + nc
             elt.style.backgroundColor = dkOrange
 
-            local.role = 'dopple'+ nc
+            local.role = 'dopple' + nc
             socket.emit('switch-true-card', local.name, nc)
             socket.emit('switch-behavior', local.name, local.role)
 
@@ -251,7 +251,7 @@ function doWerewolf(data){
             elt.innerText = data.middle[i].name + '\n card: ?'
             elt.onclick = () => {
                 if (peeksLeft > 0) {
-                    if (data.middle[i].card.name !== 'werewolf' && data.middle[i].card.name !== 'minion' || settings.haplessSoloWolf.checked) {
+                    if (data.middle[i].card.name !== 'werewolf' || settings.haplessSoloWolf.checked) {
                         peeksLeft--
                     }
                     elt.innerText = data.middle[i].name + '\n card: ' + data.middle[i].card.name
@@ -567,7 +567,7 @@ function resultSection(p, winners) {
     nameLabel.innerText = name
     elt.appendChild(nameLabel)
 
-    let originalCard = ' Original Role: ' + p.behavior
+    let originalCard = ' Behavior: ' + p.behavior
     let originalCardLabel = document.createElement('P')
     originalCardLabel.innerText = originalCard
     elt.appendChild(originalCardLabel)
@@ -577,9 +577,14 @@ function resultSection(p, winners) {
     currentCardLabel.innerText = currentCard
     elt.appendChild(currentCardLabel)
 
+    let votes = p.votes
+    let votesLabel = document.createElement('P')
+    votesLabel.innerText = ' Votes: ' + votes
+    elt.appendChild(votesLabel)
+
     let votedFor = p.hasOwnProperty('votedFor') ? p.votedFor : 'abstained'
     let votedForLabel = document.createElement('P')
-    votedForLabel.innerText = ' Vote: ' + votedFor
+    votedForLabel.innerText = ' Voted For: ' + votedFor
     elt.appendChild(votedForLabel)
 
     return elt
