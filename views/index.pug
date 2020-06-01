@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+    head
+        title Join a Room
+        link(type='text/css' rel='stylesheet' href='./css/index.css')
+    body
+        h1 One Night Ultimate Werewolf
+        div#contents
+            div#instruction-text
+                p 1) Enter a username.
+                p 2) Enter a room code to join an existing room or create a new room with that code.
+            form(id='joinForm' method='get' action='/room')
+                h3 Name:
+                input(id='name' name='name' type='text' placeholder='name here')
+                h3 Room:
+                input(id='room' name='room' type='text' placeholder='room here')
+                br
+                input(id='submit' type='submit' value='submit')
+
+            if (errors)
+                div
+                    for error in errors
+                        p.error-msg!= error.msg

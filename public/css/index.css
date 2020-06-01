@@ -1,0 +1,30 @@
+@import './base.css';
+
+body {
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#contents {
+    position: relative;
+    top: 40px;
+}
+
+#contents > * {
+    margin: 20px;
+}
+
+#instruction-text {
+    text-align: left;
+}
+
+#instruction-text > * {
+    margin: 10px;
+}
+.error-msg {
+    color: var(--bg-red);
+}

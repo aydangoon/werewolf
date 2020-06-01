@@ -1,0 +1,49 @@
+#table-info > *, #table > * {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#timer-bar {
+    height: 10px;
+    width: 300px;
+    background-color: var(--dk-orange);
+}
+
+#table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.instruction-section {
+    padding: 20px;
+}
+
+.instruction-section > * {
+    margin: 10px;
+}
+
+.list-items > * {
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--bg-yellow);
+}
+
+.clickable-items > * {
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--bg-orange);
+    cursor: pointer;
+}
+
+.result-section {
+    margin: 10px;
+    padding: 10px;
+}
+
+.result-section > * {
+    margin: 5px;
+}

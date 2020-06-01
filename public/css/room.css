@@ -1,0 +1,117 @@
+@import './base.css';
+
+input[type="checkbox"] {
+    -webkit-appearance:none;
+    height:10px;
+    width:10px;
+    cursor:pointer;
+    background-color: white;
+    padding: 0px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--lg-blue);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body > * {
+    background: var(--lg-grey);
+    margin: 20px;
+}
+
+input[type=range] {
+    padding: 0px;
+}
+
+#room-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#room-header > * {
+    padding: 10px;
+    margin: 10px;
+}
+
+#room-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#room-info-singles {
+    display: flex;
+    justify-content: center;
+}
+
+#room-info-singles > * {
+    margin: 10px;
+}
+
+/*Settings*/
+#game-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+#game-settings > * {
+    margin: 10px;
+    padding: 10px;
+}
+
+.card-list > span {
+    margin: 0 7px 0 2px
+}
+
+#village-card-toggles {
+    background: var(--bg-blue);
+    border: solid 1px var(--lg-blue);
+}
+
+#village-card-toggles > input[type="checkbox"]:checked {
+    background-color: var(--lg-blue);
+}
+
+#werewolf-card-toggles {
+    background: var(--bg-red);
+    border: solid 1px var(--lg-red);
+}
+
+#werewolf-card-toggles > input[type="checkbox"]:checked {
+    background-color: var(--lg-red);
+}
+
+#ambiguous-card-toggles {
+    background: var(--bg-purple);
+    border: solid 1px var(--lg-purple);
+}
+
+#ambiguous-card-toggles > input[type="checkbox"]:checked {
+    background-color: var(--lg-purple);
+}
+
+#independent-card-toggles {
+    background: var(--bg-green);
+    border: solid 1px var(--lg-green);
+}
+
+#independent-card-toggles > input[type="checkbox"]:checked {
+    background-color: var(--lg-green);
+}
+
+#time-sliders, #miscellanious-options {
+    text-align: center;
+}
+
+#time-sliders > *, #miscellanious-options > * {
+    margin: 10px;
+}

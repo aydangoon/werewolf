@@ -1,0 +1,89 @@
+@font-face {
+    font-family: Ubuntu;
+    src: url('../assets/Ubuntu-Light.ttf');
+}
+
+:root {
+    --hover-grey: #555;
+    --lg-grey: #444;
+    --bg-grey: #333;
+    --bg-red: rgb(209, 77, 0);
+    --lg-red: rgb(254, 111, 45);
+    --bg-blue: rgb(4, 171, 217);
+    --lg-blue: rgb(94, 210, 242);
+    --bg-purple: rgb(152, 0, 212);
+    --lg-purple: rgb(187, 62, 237);
+    --bg-green: rgb(78,171, 2);
+    --lg-green: rgb(99, 212, 6);
+    --lg-orange: rgb(252, 186, 3);
+    --bg-orange: rgb(214, 157, 0);
+    --dk-orange: rgb(148, 115, 25);
+    --lg-yellow: rgb(202, 198, 4);
+    --bg-yellow: rgb(173, 171, 26);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: Ubuntu;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    color: white;
+    background: var(--bg-grey);
+}
+
+input {
+    padding: 20px;
+    background: var(--lg-grey);
+    color: white;
+    border: none;
+}
+
+input:hover, input:focus {
+    background: var(--hover-grey);
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type=submit] {
+    padding: 10px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 80%;
+    background-color: var(--bg-grey);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: white;
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: white;
+  cursor: pointer;
+}
+
+form {
+    text-align: center;
+}
+
+form > * {
+    margin: 10px;
+}

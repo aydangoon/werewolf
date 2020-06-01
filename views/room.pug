@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+    head
+        title room page
+        link(type='text/css' rel='stylesheet' href='./css/room.css')
+        link(type='text/css' rel='stylesheet' href='./css/game.css')
+    body
+        div#room-header
+            div#room-info
+                div#room-info-singles
+                    p Room ID: !{room}
+                    p#capt-label
+                    p Username: !{name}
+                div#player-list
+            button#restart-button back to lobby
+        include ./settings.pug
+        div#table-info(style='display: none')
+            h2#original-role
+            h2#round
+            div
+                h2 Time: 
+                canvas#timer-bar
+        div#table(style='display: none')
+            h1 Instructions will appear here.
+            div#table-content
+        script(src='./socket.io/socket.io.js')
+        script.
+            var socket = io('/room/!{room}')
+            var local = {name: '!{name}', role: 'none'}
+        script(src='./js/settings.js')
+        script(src='./js/errors.js')
+        script(src='./js/tableHandler.js')
