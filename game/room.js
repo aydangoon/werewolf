@@ -82,9 +82,11 @@ function Room(name) {
     this.io.on('connection', socket => {
 
         var id = socket.id
-        console.log('socket with id', id, 'connected')
+        console.log(id, 'connected')
 
         socket.on('room-connection', name => {
+
+            console.log(id, 'joined room', this.name, 'with username', name)
 
             this.players[id] = {name: name, evilWinRatio: 0, goodWinRatio: 0}
             this.io.emit('player-list-change', this.players)
@@ -151,10 +153,9 @@ function Room(name) {
             this.table.addVote(from, to)
         })
 
-
         socket.on('disconnect', (reason) => {
 
-            console.log('socket with id', id, 'disconnected because', reason)
+            console.log(id, 'disconnected because', reason)
 
             delete this.players[id]
             this.numPlayers--

@@ -25,7 +25,7 @@ exports.get_room_access = (req, res) => {
 
         if (room === 'none') {
 
-            console.log('making room')
+            console.log('making room', req.query.room)
             roomList.push(new Room(req.query.room))
 
         } else if (room.usernameTaken(req.query.name)){
@@ -34,6 +34,7 @@ exports.get_room_access = (req, res) => {
             return
 
         }
+        console.log('request to render the room with query', req.query)
         res.render('room', req.query)
     }
 

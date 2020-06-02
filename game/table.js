@@ -115,11 +115,12 @@ function Table(players, cards, settings) {
             this.winners.push('werewolves')
         } else if ((werewolfDied && (!settings.flawlessVictory || !villagerDied)) || (noWolves && !villagerDied)) {
             this.winners.push('villagers')
-        } else {
-            this.winners.push('nobody')
         }
         if (tannerDied) {
             this.winners.push('tanners')
+        }
+        if (this.winners.length == 0) {
+            this.winners.push('nobody')
         }
 
     }
